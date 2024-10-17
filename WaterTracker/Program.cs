@@ -35,6 +35,11 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<WaterTrackerDbContext>();
     context.Database.EnsureCreated();
+
+    void addUser(string id, string pwd)
+    {
+        var user = new User{userId = id, };
+    }
 }
 
 app.Run();
