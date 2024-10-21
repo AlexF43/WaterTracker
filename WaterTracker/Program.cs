@@ -1,3 +1,5 @@
+using System.Net;
+using System.Security;
 using WaterTracker.Components;
 using Microsoft.EntityFrameworkCore;
 using WaterTracker;
@@ -38,7 +40,8 @@ using (var scope = app.Services.CreateScope())
 
     void addUser(string id, string pwd)
     {
-        var user = new User{userId = id, };
+        var user = new User{userId = id, userPwd = pwd};
+        
     }
 }
 

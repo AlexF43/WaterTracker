@@ -11,9 +11,12 @@ public class WaterTrackerDbContext : DbContext
     public DbSet<WaterUsage> WaterUsages { get; set; }
     public DbSet<WaterAmount> WaterAmounts { get; set; }
 
+    public WaterTrackerDbContext(DbContextOptions<WaterTrackerDbContext> options) : base(options)
+    {
+        
+    }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite("Data Source=watertrackerdatabase.db");
-    
     
 }
 
@@ -21,7 +24,7 @@ public class WaterTrackerDbContext : DbContext
 public class User
 {
     public string userId{ get; set; }
-    private SecureString userPwd{ get; set; }
+    public string userPwd{ get; set; }
 }
 
 [PrimaryKey(nameof(usageId))]
