@@ -3,6 +3,7 @@ using System.Security;
 using WaterTracker.Components;
 using Microsoft.EntityFrameworkCore;
 using WaterTracker;
+using WaterTracker.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
