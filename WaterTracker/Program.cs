@@ -42,7 +42,6 @@ using (var scope = app.Services.CreateScope())
     void addUser(string id, string pwd)
     {
         var user = new User{userId = id, userPwd = pwd};
-        
     }
 }
 
