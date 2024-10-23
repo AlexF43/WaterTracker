@@ -9,12 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="Navmenu hidden at Home, Login screen implemented">
+    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="bootstrap grid view, background image">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +132,7 @@
       <workItem from="1729174886602" duration="121000" />
       <workItem from="1729175096047" duration="490000" />
       <workItem from="1729513378844" duration="1237000" />
-      <workItem from="1729660284915" duration="12674000" />
+      <workItem from="1729660284915" duration="13524000" />
     </task>
     <task id="LOCAL-00001" summary="added model classes">
       <option name="closed" value="true" />
@@ -178,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729686934920</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="bootstrap grid view, background image">
+      <option name="closed" value="true" />
+      <created>1729691580082</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729691580082</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +221,8 @@
     <MESSAGE value="added sample login page" />
     <MESSAGE value="Login was actually not added on git. Added now" />
     <MESSAGE value="Navmenu hidden at Home, Login screen implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Navmenu hidden at Home, Login screen implemented" />
+    <MESSAGE value="bootstrap grid view, background image" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap grid view, background image" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
