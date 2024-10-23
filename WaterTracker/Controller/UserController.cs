@@ -9,12 +9,13 @@ namespace WaterTracker.Controller;
 public class UserController : ControllerBase
 {
     private readonly WaterTrackerDbContext _context;
+    private User? _currentUser;
 
     public UserController(WaterTrackerDbContext context)
     {
         _context = context;
     }
-
+    
     [HttpPost("signup")]
     public async Task<IActionResult> Signup([FromBody] SignupRequest request)
     {
@@ -45,6 +46,37 @@ public class UserController : ControllerBase
         catch (Exception ex)
         {
             return StatusCode(500, "An unknown errror occurred");
+        }
+    }
+    [HttpPost("signin")]
+    public async Task<IActionResult> Signin([FromBody] SignupRequest request)
+    {
+        if (_currentUser is not null)
+        {
+            try
+            {
+                var tempUser = _context.Users.Find(request.Username);
+                Console.WriteLine("in signin api");
+                if (tempUser is not null)
+                {
+                    if (BCrypt.Net.BCrypt.HashPassword(request.Password) == tempUser.userPwd)
+                    {
+                        _currentUser = tempUser;
+                        return Ok("Sign in Successful");
+                    }
+                    else 
+                        return BadRequest("Password does not match");
+                }
+                return BadRequest("Username Does Not Exists");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An unknown errror occurred");
+            }
+        }
+        else
+        {
+            return BadRequest("Invalid Access, user already signed in");
         }
     }
     

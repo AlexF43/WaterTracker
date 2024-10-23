@@ -10,11 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Controller/UserController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Model/DTO/SignupRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/Controller/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Controller/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/WaterTracker.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/WaterTracker.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db-wal" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
     ".NET Launch Settings Profile.WaterTracker: IIS Express.executor": "Run",
     ".NET Launch Settings Profile.WaterTracker: https.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "API",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -126,6 +127,7 @@
       <workItem from="1729174886602" duration="121000" />
       <workItem from="1729175096047" duration="490000" />
       <workItem from="1729513378844" duration="1237000" />
+      <workItem from="1729653993271" duration="3216000" />
     </task>
     <task id="LOCAL-00001" summary="added model classes">
       <option name="closed" value="true" />
