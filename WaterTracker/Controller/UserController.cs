@@ -15,7 +15,7 @@ public class UserController : ControllerBase
     {
         _context = context;
     }
-    
+
     [HttpPost("signup")]
     public async Task<IActionResult> Signup([FromBody] SignupRequest request)
     {
@@ -27,10 +27,10 @@ public class UserController : ControllerBase
 
             if (request.Password != request.ConfirmPassword)
                 return BadRequest("Passwords do not match");
-            
+
             if (_context.Users.Any(u => u.userName == request.Username))
                 return BadRequest("Username already exists");
-            
+
             var user = new User
             {
                 userId = Guid.NewGuid().ToString(),
@@ -48,10 +48,11 @@ public class UserController : ControllerBase
             return StatusCode(500, "An unknown errror occurred");
         }
     }
+
     [HttpPost("signin")]
     public async Task<IActionResult> Signin([FromBody] SignupRequest request)
     {
-        if (_currentUser is not null)
+        if (_currentUser is null)
         {
             try
             {
@@ -62,27 +63,38 @@ public class UserController : ControllerBase
                     if (BCrypt.Net.BCrypt.HashPassword(request.Password) == tempUser.userPwd)
                     {
                         _currentUser = tempUser;
-                        return Ok("Sign in Successful");
+                        return Ok(_currentUser);
                     }
-                    else 
+                    else
                         return BadRequest("Password does not match");
                 }
+
                 return BadRequest("Username Does Not Exists");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An unknown errror occurred");
+                return StatusCode(500, "An unknown error occurred");
             }
         }
-        else
-        {
-            return BadRequest("Invalid Access, user already signed in");
-        }
+
+        return BadRequest("Invalid Access, user already signed in");
     }
-    
+
+    [HttpPost("signout")]
+    public async Task<IActionResult> Signout([FromBody] SignupRequest request)
+    {
+        if (_currentUser is not null)
+        {
+            _currentUser = null;
+            return Ok("Logout Successful");
+        }
+
+        return BadRequest("Invalid Access, user is not logged in");
+    }
+
     [HttpGet("hello")]
     public IActionResult Hello()
-    {   
+    {
         Console.WriteLine("Hello endpoint");
         return Ok("Hello World!");
     }
