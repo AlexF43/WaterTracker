@@ -7,35 +7,42 @@ using WaterTracker.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Add this block for Entity Framework and SQLite
 builder.Services.AddDbContext<WaterTrackerDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers();
+// Add CORS to allow the frontend to communicate with the API
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddControllers(); // Make sure this is here
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    app.UseHsts();
-}
-
+// In the middleware section, make sure these are in this order:
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors("AllowAll"); // Add this line
 app.UseAntiforgery();
 
-app.MapControllers(); 
-
+// Make sure these two lines are present and in this order:
+app.MapControllers();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
 
 
 using (var scope = app.Services.CreateScope())
