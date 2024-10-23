@@ -50,7 +50,7 @@ public class UserController : ControllerBase
     
     [HttpGet("hello")]
     public IActionResult Hello()
-    {
+    {   
         Console.WriteLine("Hello endpoint");
         return Ok("Hello World!");
     }
