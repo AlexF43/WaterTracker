@@ -38,6 +38,7 @@ app.UseRouting();
 app.UseCors("AllowAll"); // Add this line
 app.UseAntiforgery();
 
+
 // Make sure these two lines are present and in this order:
 app.MapControllers();
 app.MapRazorComponents<App>()

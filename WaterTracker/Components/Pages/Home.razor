@@ -7,16 +7,19 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
-
 @if (!string.IsNullOrEmpty(_message))
 {
     <div class="@_alertClass p-4 rounded mb-4">
         @_message
     </div>
 }
-
-<button class="btn btn-primary" @onclick="TestHelloEndpoint">Click me</button>
+<h1 class="text-center font-weight-bold">WaterTracker</h1>
+<div class="graphView">
+    <!-- Visualize an entire usage of this week on Water drop image. -->
+    <!-- Text explains about the graph. e.g. "{Entire} -->
+    <!-- Button "Get Started" -->
+</div>
+<a class="btn btn-primary" href="/login" @onclick="TestHelloEndpoint">Click me</a>
 
 @code {
     private string _message = string.Empty;
@@ -31,6 +34,7 @@
 
     private async Task TestHelloEndpoint()
     {
+        
         try
         {
             _isLoading = true;
