@@ -1,3 +1,19 @@
+footer {
+    width: 100%;
+    height: auto; 
+    background-color: #183940;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 10px 20px; 
+    box-sizing: border-box; 
+}
+.sampleText, .aboutText {
+    color: white;
+    flex: 1; 
+    text-align: center;
+    line-height: normal;
+}
 .page {
     position: relative;
     display: flex;

@@ -13,13 +13,27 @@
         @_message
     </div>
 }
-<h1 class="text-center font-weight-bold">WaterTracker</h1>
-<div class="graphView">
-    <!-- Visualize an entire usage of this week on Water drop image. -->
-    <!-- Text explains about the graph. e.g. "{Entire} -->
-    <!-- Button "Get Started" -->
+<div class="homeMainContents container">
+    <div class="row h-25 align-items-center">
+        <div class="col-sm">
+            <h1 class="text-center font-weight-bold text-light">WaterTracker</h1>
+        </div>
+    </div>
+    <div class="row h-50">
+        <div class="col-sm">
+            <div class="graphView">
+                <!-- Visualize an entire usage of this week on Water drop image. -->
+                <!-- Text explains about the graph. e.g. "{Entire} -->
+                <!-- Button "Get Started" -->
+            </div>
+        </div>
+    </div>
+    <div class="row h-25">
+        <div class="col-sm d-flex justify-content-center align-items-center">
+            <a class="btn btn-primary align-middle" href="/login" @onclick="TestHelloEndpoint">Click me</a>
+        </div>
+    </div>
 </div>
-<a class="btn btn-primary" href="/login" @onclick="TestHelloEndpoint">Click me</a>
 
 @code {
     private string _message = string.Empty;
