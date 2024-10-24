@@ -1,48 +1,44 @@
-﻿@page "/login"
-@using System.Diagnostics
-@using WaterTracker.Controller
-@using WaterTracker.Model
-@using WaterTracker.Model.DTO
+﻿@page "/setgoal"
+@rendermode InteractiveServer
 
-<PageTitle>Login</PageTitle>
-
+<PageTitle>Counter</PageTitle>
 <div class="container">
     <div class="row h-100">
         <div class="col-sm w-50">
             <div class="background-wrapper"></div>
         </div>
         <div class="col-sm w-50 d-flex align-items-center justify-content-center">
-            <form method="post" @onsubmit="Submit" class="LoginForm">
-                <h1 class="text-nowrap bd-highlight">Login</h1>
+            <form method="post" @onsubmit="SubmitRegistration" class="LoginForm">
+                <h1 class="text-nowrap bd-highlight">Register</h1>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"@bind="userName">
+                    <label for="exampleInputEmail1">User Name(ID)</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your username"@bind="userName">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" @bind="userPwd">
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password Confirm</label>
+                    <input type="password" class="form-control" id="exampleInputPasswordConfirm" placeholder="Password Confirm" @bind="passConfirm">
+                </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
-                <button type="submit" class="btn btn-primary" href="/daily">Submit</button>
-                <a class="btn btn-secondary" id="RegisterBtn" href="/register">Register</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-        </div>    
+        </div>
     </div>
 </div>
-@code{
-    User user { get; set; }
-    private UserController _controller { get; set; }
 
+@code {
     string userName;
     string userPwd;
     string passConfirm;
-    private void Submit()
+    private void SubmitRegistration()
     {
         
     }
 
-    
 }

@@ -2,46 +2,40 @@
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
-
 <div class="navbar" hidden="@hidden">
-    <div class="top-row ps-3 navbar navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">WaterTracker</a>
-        </div>
-    </div>
-
     <input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
-
     <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-        <nav class="flex-column">
+        <div class="top-row ps-3 navbar navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="">WaterTracker</a>
+            </div>
+        </div>
+        <nav class="flex-row">
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                <NavLink class="nav-link" href="/daily" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Daily Record
                 </NavLink>
             </div>
-
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="counter">
-                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                <NavLink class="nav-link" href="/weekly">
+                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Weekly Record
                 </NavLink>
             </div>
-
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="weather">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                <NavLink class="nav-link" href="/goalset">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Set Goals
                 </NavLink>
             </div>
-            <div class="nav-item px-4">
-                <NavLink class="nav-link" href="login">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Login
+            <div class="nav-item px-3 loginNavItem">
+                <NavLink class="nav-link" href="logout">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Logout
                 </NavLink>
             </div>
         </nav>
     </div>
 </div>
 
-@code
-{
+@code {
     private string url = string.Empty;
     private bool hidden { get; set; } = false;
 
@@ -57,12 +51,12 @@
         }
     }
 
-    
     protected override void OnInitialized()
     {
         url = NavigationManager.Uri;
         HideNavBarCheck();
     }
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
@@ -71,4 +65,5 @@
             HideNavBarCheck();
         }
     }
+
 }
