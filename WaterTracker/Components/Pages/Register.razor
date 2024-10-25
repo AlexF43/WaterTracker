@@ -1,4 +1,4 @@
-﻿@page "/login"
+﻿@page "/register"
 @using System.Diagnostics
 @using WaterTracker.Controller
 @using WaterTracker.Model
@@ -24,7 +24,7 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" @bind="userPwd">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" @onclick='() => Test()'>
                     Launch demo modal
                 </button>
             </form>
@@ -40,5 +40,10 @@
     void Submit()
     {
         
+    }
+
+    void Test()
+    {
+        Console.WriteLine("Test");
     }
 }

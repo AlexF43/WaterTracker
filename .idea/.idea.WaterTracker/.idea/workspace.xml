@@ -9,18 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="Reset Layout, Changed UI based on default blazor UI">
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Components/ModalDialog.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor" afterDir="false" />
+    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="layout fixed, registeration modal form implementing">
+      <change afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Register.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Layout/MainLayout.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/ModalDialog.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Login.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Register.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Weather.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/WaterTracker.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/WaterTracker.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +23,13 @@
   </component>
   <component name="DpaMonitoringSettings">
     <option name="autoShow" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -50,6 +51,9 @@
     "accountId": "63b69114-268d-4d10-880c-db11bcc57d3f"
   }
 }]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/ModalDialog.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -67,7 +71,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.WaterTracker: IIS Express.executor": "Run",
-    ".NET Launch Settings Profile.WaterTracker: https.executor": "Run",
+    ".NET Launch Settings Profile.WaterTracker: https.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Frontend-Alt",
     "node.js.detected.package.eslint": "true",
@@ -144,7 +148,7 @@
       <workItem from="1729174886602" duration="121000" />
       <workItem from="1729175096047" duration="490000" />
       <workItem from="1729513378844" duration="1237000" />
-      <workItem from="1729825407916" duration="4508000" />
+      <workItem from="1729825407916" duration="7393000" />
     </task>
     <task id="LOCAL-00001" summary="added model classes">
       <option name="closed" value="true" />
@@ -170,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729834717945</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="layout fixed, registeration modal form implementing">
+      <option name="closed" value="true" />
+      <created>1729838851512</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729838851512</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +218,7 @@
     <MESSAGE value="added model classes" />
     <MESSAGE value="ef migrations add initialcreate done" />
     <MESSAGE value="Reset Layout, Changed UI based on default blazor UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reset Layout, Changed UI based on default blazor UI" />
+    <MESSAGE value="layout fixed, registeration modal form implementing" />
+    <option name="LAST_COMMIT_MESSAGE" value="layout fixed, registeration modal form implementing" />
   </component>
 </project>
