@@ -1,0 +1,40 @@
+﻿@page "/daily"
+@using WaterTracker.Model
+@attribute [StreamRendering]
+
+<PageTitle>Daily View</PageTitle>
+
+<div class="container">
+    <div class="column-sm">
+        <div class="row h-25">
+            <h1>Your Daily Record</h1>
+            <p>This component demonstrates showing data.</p>
+        </div>
+        <div class="row h-50">
+            @if (_waterUsages.Count == 0)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else
+            {
+                <p> Visualized Smth </p>
+            }
+        </div>
+        <div class="row h-25">
+            <button class="btn btn-info" id="addBtn"><b>+</b>Record your usage</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<WaterUsage> _waterUsages = new List<WaterUsage>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+    
+
+}

@@ -15,4 +15,8 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\waterBackground.png" />
+    </ItemGroup>
+
 </Project>

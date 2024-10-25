@@ -5,9 +5,25 @@
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>WaterTracker</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="container" id="homeScreen">
+    <div class="column">
+        <div class="row h-25 align-middle">
+            <h1>WaterTracker</h1>
+        </div>
+        <div class="row h-50 align-middle" >
+            <div class="infoGraphic">
+                <div class="info">
+                    <p>@liter L</p>
+                </div>
+            </div>
+        </div>
+        <div class="row h-25 align-middle">
+            <a class="btn btn-primary" href="/login">Click me</a>
+        </div>
+    </div>
+</div>
 
 @if (!string.IsNullOrEmpty(_message))
 {
@@ -16,12 +32,13 @@
     </div>
 }
 
-<button class="btn btn-primary" @onclick="TestHelloEndpoint">Click me</button>
 
 @code {
     private string _message = string.Empty;
     private string _alertClass = string.Empty;
     private bool _isLoading = false;
+
+    private float liter;
 
     protected override void OnInitialized()
     {
