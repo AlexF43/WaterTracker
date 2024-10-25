@@ -1,6 +1,9 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WaterTracker.Model;
 using WaterTracker.Model.DTO;
+using WaterTracker.Services;
 
 namespace WaterTracker.Controller;
 
@@ -9,10 +12,12 @@ namespace WaterTracker.Controller;
 public class UserController : ControllerBase
 {
     private readonly WaterTrackerDbContext _context;
+    private readonly JWTService _jwtService;
 
-    public UserController(WaterTrackerDbContext context)
+    public UserController(WaterTrackerDbContext context, JWTService jwtService)
     {
         _context = context;
+        _jwtService = jwtService;
     }
 
     [HttpPost("signup")]
@@ -20,7 +25,6 @@ public class UserController : ControllerBase
     {
         try
         {
-            Console.WriteLine("in signup api");
             if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
                 return BadRequest("Username and password are required");
 
@@ -40,18 +44,38 @@ public class UserController : ControllerBase
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok("User sucessfully registered");
+            var token = _jwtService.GenerateToken(user);
+            return Ok(new { token });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "An unknown errror occurred");
+            return StatusCode(500, "An unknown error occurred");
         }
     }
-    
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+        try
+        {
+            var user = _context.Users.FirstOrDefault(u => u.userName == request.Username);
+            
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.userPwd))
+                return Unauthorized("Invalid username or password");
+
+            var token = _jwtService.GenerateToken(user);
+            return Ok(new { token });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unknown error occurred");
+        }
+    }
+    [Authorize]
     [HttpGet("hello")]
     public IActionResult Hello()
     {   
-        Console.WriteLine("Hello endpoint");
-        return Ok("Hello World!");
+        var username = User.FindFirst(ClaimTypes.Name)?.Value;
+        return Ok($"Hello {username}!");
     }
 }

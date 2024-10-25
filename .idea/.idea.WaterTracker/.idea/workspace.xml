@@ -10,14 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/WaterTracker/Model/DTO/LoginRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WaterTracker/Services/JWTService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Counter.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Counter.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Controller/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Controller/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db-shm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db-wal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/WaterTracker.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/WaterTracker.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +34,29 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "AlexF43"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/AlexF43/WaterTracker.git",
+    "accountId": "5eca43c6-967b-4b5b-a0f6-c6f76f157309"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3f1f4402a25a494bb02dd8beeca5cb8fd82000/ea/66ca9910/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6090dad8e1674e0d829d558fc13952bf219600/3e/95ea1ae9/RouteAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/649f9a5315084d038b64e29ea11b1fb57000/e7/29a5622e/IConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ac2a88a1b8c442bf847475a5a257846a5a00/9c/aeef44bc/BCrypt.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f8dbf2e4204a4497b2061a48f87ada3626aa20/0b/e550afb2/DbSet`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -70,9 +82,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\jbync\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\jbync\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\jbync\\AppData\\Local\\Symbols\\src"
+      "/Users/alexfogg/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/Users/alexfogg/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/Users/alexfogg/Library/Application Support/Symbols/src"
     ]
   }
 }]]></component>
@@ -135,6 +147,7 @@
       <workItem from="1729174886602" duration="121000" />
       <workItem from="1729175096047" duration="490000" />
       <workItem from="1729513378844" duration="1237000" />
+      <workItem from="1729849680168" duration="2029000" />
     </task>
     <task id="LOCAL-00001" summary="added model classes">
       <option name="closed" value="true" />
@@ -152,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729174683941</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Blazor hello world test from api">
+      <option name="closed" value="true" />
+      <created>1729655232340</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729655232340</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +208,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="added model classes" />
     <MESSAGE value="ef migrations add initialcreate done" />
-    <option name="LAST_COMMIT_MESSAGE" value="ef migrations add initialcreate done" />
+    <MESSAGE value="Blazor hello world test from api" />
+    <option name="LAST_COMMIT_MESSAGE" value="Blazor hello world test from api" />
   </component>
 </project>
