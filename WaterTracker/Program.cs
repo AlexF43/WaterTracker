@@ -1,9 +1,13 @@
 using System.Net;
 using System.Security;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using WaterTracker.Components;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WaterTracker;
 using WaterTracker.Model;
+using WaterTracker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +17,24 @@ builder.Services.AddRazorComponents()
 builder.Services.AddDbContext<WaterTrackerDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add CORS to allow the frontend to communicate with the API
+builder.Services.AddScoped<JWTService>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
@@ -25,36 +46,32 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddControllers(); // Make sure this is here
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
-// In the middleware section, make sure these are in this order:
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseCors("AllowAll"); // Add this line
+app.UseCors("AllowAll");
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseAntiforgery();
 
-// Make sure these two lines are present and in this order:
 app.MapControllers();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
-
-
 
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<WaterTrackerDbContext>();
     context.Database.EnsureCreated();
-
-    void addUser(string id, string pwd)
-    {
-        var user = new User{userId = id, userPwd = pwd};
-    }
 }
 
 app.Run();
+
