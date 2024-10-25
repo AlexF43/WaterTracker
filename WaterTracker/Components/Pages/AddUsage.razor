@@ -1,0 +1,65 @@
+﻿@page "/addUsage"
+@using System.Diagnostics.CodeAnalysis
+@using WaterTracker.Model
+@using System.Linq
+@inject HttpClient Http
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+<PageTitle>Record Water Usage</PageTitle>
+
+<div class="container">
+    <div class="row h-25">
+        <h1>Record Water Usage</h1>
+        <p>This component demonstrates showing data.</p>
+    </div>
+    <div class="row h-50">
+        <form action="">
+            <div class="form-group">
+                <label for="Time">Time</label>
+                <input type="email" class="form-control" id="Time" aria-describedby="emailHelp" placeholder="hh:mm" value="@now">
+            </div>
+            <div class="form-group">
+                <label for="waterUsageName">Usage</label>
+                <input class="form-control" id="waterUsageName" placeholder="Title(Reason) of water usage">
+            </div>
+            <div class="form-group">
+                <label for="waterUsageName">Usage Category</label>
+                <select class="form-select" aria-label="Usage Example">
+                    <option selected>Shower</option>
+                    <option value="1">Toilet</option>
+                    <option value="2">Dishwash</option>
+                    <option value="3">Hand wash</option>
+                    <!-- Get list from wateramount -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="usedTime">Used Time</label>
+                <input class="form-control" id="usedTime" placeholder="Used Seconds">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@code {
+
+    enum GraphStatus
+    {
+        Proportion,
+        AllUsage
+    }
+    private string now;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //get water usages
+        now = DateTime.Now.ToString("HH:mm");
+    }
+
+    private async Task GetWaterUsages()
+    {
+    }
+}

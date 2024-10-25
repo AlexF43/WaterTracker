@@ -39,9 +39,9 @@
                     @foreach (WaterUsage usage in _waterUsages)
                     {
                         <tr>
-                            <th>usage</th>
-                            <td>Usage</td>
-                            <td>Length</td>
+                            <th>usage.Date</th>
+                            <td>usage.UsageType</td>
+                            <td>usage.TotalUsage</td>
                         </tr>
                     }
                     </tbody>
@@ -77,7 +77,7 @@
     }
     
     private List<WaterUsage> _waterUsages = new List<WaterUsage>();
-    private GraphStatus _status = GraphStatus.Proportion;
+    private GraphStatus _status = GraphStatus.AllUsage;
     bool dropdown, table, proportion;
     string myStyle, statusString;
     
@@ -91,7 +91,7 @@
     }
     
     
-    private async Task GetWaterUsage()
+    private async Task GetWaterUsages()
     {
         Console.Write("Request water usages");
         var response = await Http.GetAsync("api/User/getWaterUsage");
