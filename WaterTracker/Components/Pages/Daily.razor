@@ -15,47 +15,45 @@
     <div class="row h-auto w-25" style="float:right">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" @onclick="ToggleDropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
+                @statusString
             </button>
             <div class="dropdown-menu" style="@myStyle">
-                <a class="dropdown-item" href="#" @onclick="() => SetStatus(1)">Action</a>
-                <a class="dropdown-item" href="#" @onclick="() => SetStatus(2)">Another action</a>
+                <a class="dropdown-item" @onclick="() => SetStatus(1)">Usage List</a>
+                <a class="dropdown-item" @onclick="() => SetStatus(2)">Proportion</a>
             </div>
         </div>
     </div>
     <div class="row h-50">
-        @if (_waterUsages.Count == 0)
-        {
-            <p>
-                <em>Loading...</em>
-            </p>
-        }
-        else
-        {
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Usage</th>
-                    <th>Length</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (WaterUsage usage in _waterUsages)
-                {
+        
+            @if (_status == GraphStatus.AllUsage)
+            {
+                <table class="table">
+                    <thead>
                     <tr>
-                        <th>usage</th>
-                        <td>Usage</td>
-                        <td>Length</td>
+                        <th>Date</th>
+                        <th>Usage</th>
+                        <th>Length</th>
                     </tr>
-                }
-                </tbody>
-            </table>
-            
-            <div class="PieChart" hidden>
-                
-            </div>
-        }
+                    </thead>
+                    <tbody>
+                    @foreach (WaterUsage usage in _waterUsages)
+                    {
+                        <tr>
+                            <th>usage</th>
+                            <td>Usage</td>
+                            <td>Length</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="PieChart">
+                    Pie
+                </div>
+            }
+        
     </div>
     <div class="row h-25">
         <div class="column-sm w-50">
@@ -80,8 +78,8 @@
     
     private List<WaterUsage> _waterUsages = new List<WaterUsage>();
     private GraphStatus _status = GraphStatus.Proportion;
-    bool dropdown;
-    string myStyle;
+    bool dropdown, table, proportion;
+    string myStyle, statusString;
     
     
     protected override async Task OnInitializedAsync()
@@ -89,6 +87,7 @@
         //get water usages
         dropdown = false;
         myStyle = "display:none";
+        statusString = "Usage List";
     }
     
     
@@ -105,7 +104,10 @@
     private void SetStatus(int statusIdx)
     {
         _status = statusIdx == 1 ? GraphStatus.AllUsage : GraphStatus.Proportion;
-        //Inject JS change hidden
+        statusString = statusIdx == 1 ? "Usage List" : "Proportion";
+        table = statusIdx == 1;
+        proportion = statusIdx == 2;
+        ToggleDropdown();
     }
 
     private void ToggleDropdown()

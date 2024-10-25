@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Weekly.razor" afterDir="false" />
+    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="/daily dropdown menu implemented">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +150,7 @@
       <workItem from="1729175096047" duration="490000" />
       <workItem from="1729513378844" duration="1237000" />
       <workItem from="1729825407916" duration="14395000" />
-      <workItem from="1729853798836" duration="2259000" />
+      <workItem from="1729853798836" duration="3124000" />
     </task>
     <task id="LOCAL-00001" summary="added model classes">
       <option name="closed" value="true" />
@@ -202,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729849335256</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="/daily dropdown menu implemented">
+      <option name="closed" value="true" />
+      <created>1729856289728</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729856289728</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,14 +247,15 @@
     <MESSAGE value="layout fixed, registeration modal form implementing" />
     <MESSAGE value="layout fix + started working on visualization" />
     <MESSAGE value="Made a template for statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made a template for statistics" />
+    <MESSAGE value="/daily dropdown menu implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="/daily dropdown menu implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor</url>
-          <line>110</line>
+          <line>114</line>
           <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Components\Pages\Daily.razor" isMultiMethodBreakpoint="true">
             <option name="multiMethodBreakpoint" value="true" />
             <startOffsets>
