@@ -9,6 +9,6 @@ public class User
     public string userName { get; set; }
     public string userPwd{ get; set; }
     
-    public string weeklyGoal { get; set; }
-    public string dailyGoal { get; set; }
+    public double weeklyGoal { get; set; }
+    public double dailyGoal { get; set; }
 }
