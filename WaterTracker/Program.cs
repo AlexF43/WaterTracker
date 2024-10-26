@@ -96,6 +96,22 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<WaterTrackerDbContext>();
+    
+    //Example Data Add
+    List<WaterAmount> waterAmounts = new List<WaterAmount>()
+    {
+        new WaterAmount { usageType = "Shower", usageLiterPerSec = 0.2},
+        new WaterAmount { usageType = "Toilet Flush - Half", usageLiterPerSec = 4.5},
+        new WaterAmount { usageType = "Toilet Flush - Full", usageLiterPerSec = 9},
+        new WaterAmount {usageType = "Dishwashing - Hand", usageLiterPerSec = 0.25},
+        new WaterAmount {usageType = "Dishwashing - Machine", usageLiterPerSec = 18},
+        new WaterAmount {usageType = "Washing Machine", usageLiterPerSec = 72},
+        new WaterAmount {usageType ="tap", usageLiterPerSec = 0.25}
+    };
+    foreach (var amount in waterAmounts)
+    {
+        context.WaterAmounts.Add(amount);
+    }
     context.Database.EnsureCreated();
 }
 
