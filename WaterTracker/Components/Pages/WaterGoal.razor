@@ -1,0 +1,82 @@
+﻿@page "/set-goals"
+
+<div class="page">
+    <h2 class="title">Set Your Goals</h2>
+
+    <div class="goal-container">
+        <div class="goal-section">
+            <h3>Daily</h3>
+            <div class="goal-display">
+                <span class="goal-value">00</span> L / <span class="average-value">250</span> L
+            </div>
+        </div>
+        <div class="goal-section">
+            <h3>Weekly</h3>
+            <div class="goal-display">
+                <span class="goal-value">000</span> L / <span class="average-value">1750</span> L
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="submit-btn">Submit</button>
+        <button class="reset-btn">Reset</button>
+    </div>
+</div>
+
+<style>
+    .page {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .goal-container {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .goal-section {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .goal-display {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .goal-value, .average-value {
+        padding: 0 5px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .submit-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .reset-btn {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
