@@ -21,6 +21,7 @@ builder.Services.AddDbContext<WaterTrackerDbContext>(options =>
 
 builder.Services.AddScoped<JWTService>();
 builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<WaterTrackingService>();
 builder.Services.AddHttpClient();
 
 builder.Services.AddAntiforgery(options =>

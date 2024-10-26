@@ -63,19 +63,15 @@ public class WaterTrackingController : ControllerBase
     {
         try
         {
-            var query = _context.WaterAmounts;
-            List<UsageAmountResponse> responseList = new List<UsageAmountResponse>();
-            foreach (var item in query)
-            {
-                responseList.Add(new UsageAmountResponse{UsageType = item.usageType, UsageLiterPerSec = item.usageLiterPerSec});
-            }
-            return Ok(responseList);
+            var query = _context.WaterAmounts.ToList();
+            return Ok(query);
         }
         catch (Exception ex)
         {
             return StatusCode(500, "An internal error occurred while fetching usage amounts");
         }
     }
+    
     
     [HttpGet("goals")]
     public async Task<IActionResult> GetGoals()

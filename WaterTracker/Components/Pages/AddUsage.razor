@@ -2,7 +2,10 @@
 @using System.Diagnostics.CodeAnalysis
 @using WaterTracker.Model
 @using System.Linq
+@using ApexCharts
+@using WaterTracker.Services
 @inject HttpClient Http
+@inject WaterTrackingService TrackService
 @attribute [StreamRendering]
 @rendermode InteractiveServer
 
@@ -26,10 +29,11 @@
             <div class="form-group">
                 <label for="waterUsageName">Usage Category</label>
                 <select class="form-select" aria-label="Usage Example">
-                    <option selected>Shower</option>
-                    <option value="1">Toilet</option>
-                    <option value="2">Dishwash</option>
-                    <option value="3">Hand wash</option>
+                    @for(int i=0; i<_amounts.Count; i++)
+                    {
+                        <option value="@i+1j">@_amounts[i].usageType</option>    
+                    }
+                    
                     <!-- Get list from wateramount -->
                 </select>
             </div>
@@ -52,14 +56,13 @@
         AllUsage
     }
     private string now;
+    List<WaterAmount> _amounts;
 
     protected override async Task OnInitializedAsync()
     {
         //get water usages
         now = DateTime.Now.ToString("HH:mm");
+        _amounts = await TrackService.GetAmountListAsync();
     }
-
-    private async Task GetWaterUsages()
-    {
-    }
+    
 }

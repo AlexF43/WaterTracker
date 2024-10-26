@@ -1,6 +1,5 @@
 using System.Net.Http.Headers;
 using Microsoft.JSInterop;
-using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
 using WaterTracker.Model.DTO;
 
