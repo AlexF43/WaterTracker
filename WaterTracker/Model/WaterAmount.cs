@@ -5,6 +5,6 @@ namespace WaterTracker.Model;
 [PrimaryKey(nameof(usageType))]
 public class WaterAmount
 {
-    private string usageType{ get; set; }
-    private double usageLiterPerSec { get; set; }
+    public string usageType{ get; set; }
+    public double usageLiterPerSec { get; set; }
 }
