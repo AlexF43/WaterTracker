@@ -1,0 +1,124 @@
+﻿@page "/daily"
+@using WaterTracker.Model
+@using System.Linq
+@inject HttpClient Http
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+<PageTitle>Daily View</PageTitle>
+
+<div class="container">
+    <div class="row h-25">
+        <h1>Your Daily Record</h1>
+        <p>This component demonstrates showing data.</p>
+    </div>
+    <div class="row h-auto w-25" style="float:right">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" @onclick="ToggleDropdown" aria-haspopup="true" aria-expanded="false">
+                @statusString
+            </button>
+            <div class="dropdown-menu" style="@myStyle">
+                <a class="dropdown-item" @onclick="() => SetStatus(1)">Usage List</a>
+                <a class="dropdown-item" @onclick="() => SetStatus(2)">Proportion</a>
+            </div>
+        </div>
+    </div>
+    <div class="row h-50">
+        
+            @if (_status == GraphStatus.AllUsage)
+            {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Usage</th>
+                        <th>Length</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (WaterUsage usage in _waterUsages)
+                    {
+                        <tr>
+                            <th>usage.Date</th>
+                            <td>usage.UsageType</td>
+                            <td>usage.TotalUsage</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="PieChart">
+                    Pie
+                </div>
+            }
+        
+    </div>
+    <div class="row h-25">
+        <div class="column-sm w-50">
+            <button class="btn btn-info" id="addBtn"><b>+</b>Record your usage</button>
+        </div>
+        <div class="column-sm w-50">
+            <div id="infoGraphic">
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@code {
+
+    enum GraphStatus
+    {
+        Proportion,
+        AllUsage
+    }
+    
+    private List<WaterUsage> _waterUsages = new List<WaterUsage>();
+    private GraphStatus _status = GraphStatus.AllUsage;
+    bool dropdown, table, proportion;
+    string myStyle, statusString;
+    
+    
+    protected override async Task OnInitializedAsync()
+    {
+        //get water usages
+        dropdown = false;
+        myStyle = "display:none";
+        statusString = "Usage List";
+    }
+    
+    
+    private async Task GetWaterUsages()
+    {
+        Console.Write("Request water usages");
+        var response = await Http.GetAsync("api/User/getWaterUsage");
+        if (response.IsSuccessStatusCode)
+        {
+            
+        }
+    }
+
+    private void SetStatus(int statusIdx)
+    {
+        _status = statusIdx == 1 ? GraphStatus.AllUsage : GraphStatus.Proportion;
+        statusString = statusIdx == 1 ? "Usage List" : "Proportion";
+        table = statusIdx == 1;
+        proportion = statusIdx == 2;
+        ToggleDropdown();
+    }
+
+    private void ToggleDropdown()
+    {
+        Console.Write("Toggle()");
+        dropdown = !dropdown;
+        myStyle = dropdown ? "display:block;!important" : "display:none";
+        
+    }
+    
+    
+    
+
+}

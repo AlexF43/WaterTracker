@@ -1,0 +1,73 @@
+﻿@page "/weekly"
+@using WaterTracker.Model
+@inject HttpClient Http
+@attribute [StreamRendering]
+
+<PageTitle>Weekly View</PageTitle>
+
+<div class="container">
+    <div class="row h-25">
+        <h1>Your Weekly Record</h1>
+        <p>This component demonstrates showing data.</p>
+    </div>
+    <div class="row h-50">
+        @if (_waterUsages.Count == 0)
+        {
+            <p>
+                <em>Loading...</em>
+            </p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Usage</th>
+                    <th>Length</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (WaterUsage usage in _waterUsages)
+                {
+                    <tr>
+                        <th>@usage</th>
+                        <td>temp</td>
+                        <td>temp</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </div>
+    <div class="row h-25">
+        <div class="column-sm w-50">
+            <button class="btn btn-info" id="addBtn"><b>+</b>Record your usage</button>
+        </div>
+        <div class="column-sm w-50">
+            <div id="infoGraphic">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    private List<WaterUsage> _waterUsages = new List<WaterUsage>();
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    private async Task GetWaterUsage()
+    {
+        Console.Write("Request water usages");
+        var response = await Http.GetAsync("api/User/getWaterUsage");
+        if (response.IsSuccessStatusCode)
+        {
+            
+        }
+    }
+
+}
