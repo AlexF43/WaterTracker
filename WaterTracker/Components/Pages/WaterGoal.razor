@@ -1,0 +1,139 @@
+﻿@page "/set-goals"
+
+<div class="page">
+    <h2 class="title">Set Your Goals</h2>
+
+    <div class="goal-container">
+        <div class="goal-section">
+            <h3>Daily</h3>
+            <div class="goal-display">
+                <input @bind="DailyGoal" type="number" min="0" class="goal-input" /> L /
+                <span class="average-value">
+                    @if (DailyAverage.HasValue)
+                    {
+                        @DailyAverage.Value
+                    }
+                    else
+                    {
+                        <em>Loading...</em>
+                    }
+                </span> L
+            </div>
+        </div>
+        <div class="goal-section">
+            <h3>Weekly</h3>
+            <div class="goal-display">
+                <input @bind="WeeklyGoal" type="number" min="0" class="goal-input" /> L /
+                <span class="average-value">
+                    @if (WeeklyAverage.HasValue)
+                    {
+                        @WeeklyAverage.Value
+                    }
+                    else
+                    {
+                        <em>Loading...</em>
+                    }
+                </span> L
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="submit-btn" @onclick="SaveGoals">Submit</button>
+        <button class="reset-btn" @onclick="ResetGoals">Reset</button>
+    </div>
+</div>
+
+@code {
+    
+    private int DailyGoal { get; set; } = 0;
+    private int WeeklyGoal { get; set; } = 0;
+
+    
+    public int? DailyAverage { get; set; } = null;
+    public int? WeeklyAverage { get; set; } = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // For now I will set this average but we will need to load from database/API
+        DailyAverage = 250; 
+        WeeklyAverage = 1750; 
+    }
+
+    private void SaveGoals()
+    {
+        // Logic for daily goal and weekly goal still needs to be added
+    }
+
+    private void ResetGoals()
+    {
+        DailyGoal = 0;
+        WeeklyGoal = 0;
+    }
+}
+
+<style>
+    .page {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .goal-container {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .goal-section {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .goal-display {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .goal-input {
+        width: 70px;
+        font-size: 36px;
+        text-align: center;
+        border: none;
+        border-bottom: 2px solid #000;
+        margin-right: 5px;
+    }
+
+    .goal-value, .average-value {
+        padding: 0 5px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .submit-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .reset-btn {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
