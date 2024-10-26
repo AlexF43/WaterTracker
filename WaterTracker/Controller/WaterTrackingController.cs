@@ -57,7 +57,6 @@ public class WaterTrackingController : ControllerBase
         
         
     }
-    
     [HttpGet("amounts")]
     public async Task<IActionResult> GetAmounts()
     {
@@ -71,7 +70,7 @@ public class WaterTrackingController : ControllerBase
             return StatusCode(500, "An internal error occurred while fetching usage amounts");
         }
     }
-    
+
     
     [HttpGet("goals")]
     public async Task<IActionResult> GetGoals()

@@ -1,4 +1,13 @@
 ﻿@page "/set-goals"
+@using WaterTracker.Services
+@inject HttpClient Http
+@inject WaterTrackingService TrackService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Javascript
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+<PageTitle> Set Goals </PageTitle>
 
 <div class="page">
     <h2 class="title">Set Your Goals</h2>
@@ -7,7 +16,7 @@
         <div class="goal-section">
             <h3>Daily</h3>
             <div class="goal-display">
-                <input @bind="DailyGoal" type="number" min="0" class="goal-input" /> L /
+                <input @bind="DailyGoal" type="number" min="0" class="goal-input"/> L /
                 <span class="average-value">
                     @if (DailyAverage.HasValue)
                     {
@@ -23,7 +32,7 @@
         <div class="goal-section">
             <h3>Weekly</h3>
             <div class="goal-display">
-                <input @bind="WeeklyGoal" type="number" min="0" class="goal-input" /> L /
+                <input @bind="WeeklyGoal" type="number" min="0" class="goal-input"/> L /
                 <span class="average-value">
                     @if (WeeklyAverage.HasValue)
                     {
@@ -45,7 +54,6 @@
 </div>
 
 @code {
-    
     private int DailyGoal { get; set; } = 0;
     private int WeeklyGoal { get; set; } = 0;
 
@@ -53,16 +61,28 @@
     public int? DailyAverage { get; set; } = null;
     public int? WeeklyAverage { get; set; } = null;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        // For now I will set this average but we will need to load from database/API
-        DailyAverage = 250; 
-        WeeklyAverage = 1750; 
+        if (firstRender)
+        {
+            var result = await TrackService.GetGoalAsync();
+            if (result != null)
+            {
+                DailyGoal = (int)result.DailyGoal;
+                WeeklyGoal = (int)result.WeeklyGoal;
+            }
+            // For now I will set this average but we will need to load from database/API
+            DailyAverage = 250; 
+            WeeklyAverage = 1750; 
+            StateHasChanged();
+        }
     }
-
-    private void SaveGoals()
+    
+    private async void SaveGoals()
     {
-        // Logic for daily goal and weekly goal still needs to be added
+        await TrackService.SetGoalAsync(DailyGoal, WeeklyGoal);
+        await Javascript.InvokeVoidAsync("alert", "Goals have been saved successfully!");
+        NavigationManager.NavigateTo("/daily");
     }
 
     private void ResetGoals()
@@ -99,7 +119,7 @@
     }
 
     .goal-input {
-        width: 70px;
+        width: 100px;
         font-size: 36px;
         text-align: center;
         border: none;

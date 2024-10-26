@@ -38,7 +38,9 @@ public class UserController : ControllerBase
             {
                 userId = Guid.NewGuid().ToString(),
                 userName = request.Username,
-                userPwd = BCrypt.Net.BCrypt.HashPassword(request.Password)
+                userPwd = BCrypt.Net.BCrypt.HashPassword(request.Password),
+                dailyGoal = 250.0,
+                weeklyGoal = 1750.0
             };
 
             _context.Users.Add(user);
