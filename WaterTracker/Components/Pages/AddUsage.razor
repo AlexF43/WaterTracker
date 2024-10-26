@@ -4,6 +4,8 @@
 @using WaterTracker.Services
 @inject HttpClient Http
 @inject WaterTrackingService TrackService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Javascript
 @attribute [StreamRendering]
 @rendermode InteractiveServer
 
@@ -17,14 +19,14 @@
         <p>This component demonstrates showing data.</p>
     </div>
     <div class="row h-50">
-        <form action="">
+        <form method="post" @onsubmit="Onsubmit">
             <div class="form-group">
                 <label for="Time">Time</label>
-                <input type="email" class="form-control" id="Time" aria-describedby="emailHelp" placeholder="hh:mm" value="@now">
+                <input class="form-control" id="Time" aria-describedby="emailHelp" placeholder="hh:mm" value="@now">
             </div>
             <div class="form-group">
                 <label for="waterUsageName">Usage</label>
-                <input class="form-control" id="waterUsageName" placeholder="Title(Reason) of water usage">
+                <input class="form-control" id="waterUsageName" placeholder="Title(Reason) of water usage" @bind="usageName">
             </div>
             <div class="form-group">
                 <label for="waterUsageName">Usage Category</label>
@@ -44,10 +46,10 @@
             </div>
             <div class="form-group">
                 <label for="usedTime">Used Time</label>
-                <input class="form-control" id="usedTime" placeholder="Used Seconds" disabled="@fixedTime" value="@fixedValue">
+                <input class="form-control" id="usedTime" placeholder="Used Seconds" disabled="@fixedTime" @bind="fixedValue">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" @onsubmit="Onsubmit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
     </div>
@@ -63,7 +65,9 @@
 
     private string now;
     private bool fixedTime;
-    private double fixedValue;
+    private int fixedValue;
+    private int selectedValue;
+    private string usageName;
     List<WaterAmount> _amounts = new List<WaterAmount>();
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -82,7 +86,7 @@
     void LoadValue(ChangeEventArgs e)
     {
         int index = Convert.ToInt32(e.Value);
-
+        selectedValue = index;
         switch (index)
         {
             case 1:
@@ -110,6 +114,15 @@
 
     private async void Onsubmit()
     {
+        if (await TrackService.AddUsageAsync(usageName, _amounts[selectedValue].usageType, fixedValue))
+        {
+            await Javascript.InvokeVoidAsync("alert", "Successfully Added");
+            NavigationManager.NavigateTo("/daily");
+        }
+        else
+        {
+            await Javascript.InvokeVoidAsync("alert", "Error");
+        }
         
     }
     

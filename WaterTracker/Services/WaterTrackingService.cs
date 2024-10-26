@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using WaterTracker.Model;
 using WaterTracker.Model.DTO;
+using WaterTracker.Model.DTO.WaterTrackingDTO;
 
 
 namespace WaterTracker.Services;
@@ -123,6 +124,39 @@ public class WaterTrackingService
         {
             Console.WriteLine($"GetAmount endpoint error: {ex.Message}");
             return null;
+        }
+    }
+    
+    public async Task<bool> AddUsageAsync(string name, string type, int usedTime)
+    {
+        CreateWaterUseageRequest request = new CreateWaterUseageRequest
+            { UsageName = name, UsageType = type, UsedSeconds = usedTime };
+        try
+        {
+            var token = await GetTokenAsync();
+            if (string.IsNullOrEmpty(token))
+            {
+                return false;
+            }
+            
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.PostAsJsonAsync("api/WaterTracking", request);
+        
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+        
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Hello endpoint error: {response.StatusCode}, {errorContent}");
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Hello endpoint error: {ex.Message}");
+            return false;
         }
     }
     

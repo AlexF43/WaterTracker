@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="Workspace.xml added">
+    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="AddUsage Selection Validate Implemented">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/AddUsage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/AddUsage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,12 +54,16 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Net.Http.Json/src/System/Net/Http/Json/HttpClientJsonExtensions.Get.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Net.Http.Json/src/System/Net/Http/Json/HttpClientJsonExtensions.Post.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Net.Http/src/System/Net/Http/HttpClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Net.Http/src/System/Net/Http/HttpResponseMessage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Collections/Generic/List.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Number.Parsing.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Runtime/CompilerServices/AsyncValueTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Threading/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/Future.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/Task.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/430200c27b11480ab26de5f7d5cf1abab0918/40/378093b3/RazorComponentEndpointInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/430200c27b11480ab26de5f7d5cf1abab0918/8e/b2ea3e50/EndpointHtmlRenderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/AddUsage.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/AddUsage.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/AddUsage.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/Daily.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -84,7 +87,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.WaterTracker: IIS Express.executor": "Run",
-    ".NET Launch Settings Profile.WaterTracker: https.executor": "Debug",
+    ".NET Launch Settings Profile.WaterTracker: https.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "WaterTrackingAPI",
     "node.js.detected.package.eslint": "true",
@@ -195,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729957816186</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="AddUsage Selection Validate Implemented">
+      <option name="closed" value="true" />
+      <created>1729962500805</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729962500805</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +243,8 @@
     <MESSAGE value="ef migrations add initialcreate done" />
     <MESSAGE value="Blazor hello world test from api" />
     <MESSAGE value="Workspace.xml added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Workspace.xml added" />
+    <MESSAGE value="AddUsage Selection Validate Implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="AddUsage Selection Validate Implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -252,7 +264,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WaterTracker/Components/Pages/AddUsage.razor</url>
-          <line>68</line>
+          <line>72</line>
           <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Components\Pages\AddUsage.razor" isMultiMethodBreakpoint="true">
             <option name="multiMethodBreakpoint" value="true" />
             <startOffsets>
@@ -266,16 +278,30 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs</url>
-          <line>97</line>
+          <line>98</line>
           <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Services\WaterTrackingService.cs" containingFunctionPresentation="Method 'GetAmountListAsync'">
             <startOffsets>
-              <option value="3211" />
+              <option value="3258" />
             </startOffsets>
             <endOffsets>
-              <option value="3212" />
+              <option value="3259" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WaterTracker/Components/Pages/AddUsage.razor</url>
+          <line>116</line>
+          <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Components\Pages\AddUsage.razor" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+            <startOffsets>
+              <option value="-1" />
+            </startOffsets>
+            <endOffsets>
+              <option value="-1" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
