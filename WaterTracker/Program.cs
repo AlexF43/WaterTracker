@@ -97,7 +97,8 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<WaterTrackerDbContext>();
-    
+
+    context.WaterAmounts.ExecuteDelete();
     //Example Data Add
     List<WaterAmount> waterAmounts = new List<WaterAmount>()
     {
@@ -114,6 +115,7 @@ using (var scope = app.Services.CreateScope())
         context.WaterAmounts.Add(amount);
     }
     context.Database.EnsureCreated();
+    context.SaveChanges();
 }
 
 app.Run();

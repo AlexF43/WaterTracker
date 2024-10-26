@@ -1,4 +1,5 @@
 ﻿@page "/addUsage"
+@using ApexCharts
 @using WaterTracker.Model
 @using WaterTracker.Services
 @inject HttpClient Http
@@ -7,6 +8,8 @@
 @rendermode InteractiveServer
 
 <PageTitle>Record Water Usage</PageTitle>
+
+
 
 <div class="container">
     <div class="row h-25">
@@ -25,21 +28,26 @@
             </div>
             <div class="form-group">
                 <label for="waterUsageName">Usage Category</label>
-                <select class="form-select" aria-label="Usage Example">
-                    @for(int i=0; i<_amounts.Count; i++)
+                <select class="form-select" aria-label="Usage Example" name="Selection" @onchange="LoadValue">
+                    @if (_amounts != null && _amounts.Any())
                     {
-                        <option value="@i+1j">@_amounts[i].usageType</option>    
+                        @for (int i = 0; i < _amounts.Count; i++)
+                        {
+                            <option value="@i">@_amounts[i].usageType</option>
+                        }
                     }
-                    
-                    <!-- Get list from wateramount -->
+                    else
+                    {
+                        <option disabled>Loading...</option>
+                    }
                 </select>
             </div>
             <div class="form-group">
                 <label for="usedTime">Used Time</label>
-                <input class="form-control" id="usedTime" placeholder="Used Seconds">
+                <input class="form-control" id="usedTime" placeholder="Used Seconds" disabled="@fixedTime" value="@fixedValue">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" @onsubmit="Onsubmit">Submit</button>
             </div>
         </form>
     </div>
@@ -52,14 +60,58 @@
         Proportion,
         AllUsage
     }
-    private string now;
-    List<WaterAmount> _amounts;
 
-    protected override async Task OnInitializedAsync()
+    private string now;
+    private bool fixedTime;
+    private double fixedValue;
+    List<WaterAmount> _amounts = new List<WaterAmount>();
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        //get water usages
-        now = DateTime.Now.ToString("HH:mm");
-        _amounts = await TrackService.GetAmountListAsync();
+        if (firstRender)
+        {
+            var result = await TrackService.GetAmountListAsync();
+            if (result != null)
+            {
+                _amounts = result;
+                now = DateTime.Now.ToString("HH:mm");
+            }
+            StateHasChanged();
+        }
     }
+
+    void LoadValue(ChangeEventArgs e)
+    {
+        int index = Convert.ToInt32(e.Value);
+
+        switch (index)
+        {
+            case 1:
+                fixedValue = 1;
+                fixedTime = true;
+                break; 
+            case 4:
+                fixedValue = 1;
+                fixedTime = true;
+                break; 
+            case 5:
+                fixedValue = 1;
+                fixedTime = true;
+                break; 
+            case 6:
+                fixedValue = 1;
+                fixedTime = true;
+                break; 
+            default:
+                fixedValue = 0;
+                fixedTime = false;
+                break;
+        }
+    }
+
+    private async void Onsubmit()
+    {
+        
+    }
+    
     
 }

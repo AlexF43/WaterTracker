@@ -30,24 +30,6 @@ public class WaterTrackingService
         }
         return _cachedToken;
     }
-
-    public async Task<List<WaterAmount>> GetAmountListAsync()
-    {
-        try
-        {
-            var response = await _httpClient.GetFromJsonAsync<List<WaterAmount>>("api/WaterTracking/amounts");
-            if (response != null)
-            {
-                return response;
-            }
-        }
-        catch (Exception ex)
-        {
-            return null;
-        }
-
-        return null;
-    }
     
     public async Task<GoalDTO> GetGoalAsync()
     {
@@ -108,6 +90,38 @@ public class WaterTrackingService
         catch (Exception ex)
         {
             Console.WriteLine($"Hello endpoint error: {ex.Message}");
+            return null;
+        }
+    }
+    
+    public async Task<List<WaterAmount>> GetAmountListAsync()
+    {
+        try
+        {
+            var token = await GetTokenAsync();
+            if (string.IsNullOrEmpty(token))
+            {
+                return null;
+            }
+
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/WaterTracking/amounts");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<List<WaterAmount>>();
+                return result;
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"GetAmount endpoint error: {response.StatusCode}, {errorContent}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"GetAmount endpoint error: {ex.Message}");
             return null;
         }
     }

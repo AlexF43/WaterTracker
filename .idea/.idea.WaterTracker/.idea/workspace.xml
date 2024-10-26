@@ -9,15 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/AuthTest.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Model/DTO/LoginResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WaterTracker/Services/AuthenticationService.cs" afterDir="false" />
+    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="Workspace.xml added">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Login.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Controller/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Controller/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/AddUsage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/AddUsage.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +44,28 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3f1f4402a25a494bb02dd8beeca5cb8fd82000/ea/66ca9910/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6090dad8e1674e0d829d558fc13952bf219600/3e/95ea1ae9/RouteAttribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/649f9a5315084d038b64e29ea11b1fb57000/e7/29a5622e/IConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ac2a88a1b8c442bf847475a5a257846a5a00/9c/aeef44bc/BCrypt.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f8dbf2e4204a4497b2061a48f87ada3626aa20/0b/e550afb2/DbSet`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Components/Components/src/RenderTree/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Components/Components/src/Rendering/ComponentState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Mvc/Mvc.Core/src/Infrastructure/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Mvc/Mvc.Core/src/Infrastructure/ControllerActionInvoker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Mvc/Mvc.Core/src/Infrastructure/ResourceInvoker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Security/Authorization/Policy/src/AuthorizationMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/c2a442982e736e17ae6bcadbfd8ccba278ee1be6/src/Servers/Kestrel/Core/src/Internal/Http/HttpProtocol.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Net.Http.Json/src/System/Net/Http/Json/HttpClientJsonExtensions.Get.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Net.Http.Json/src/System/Net/Http/Json/HttpClientJsonExtensions.Post.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Net.Http/src/System/Net/Http/HttpClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Number.Parsing.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Runtime/CompilerServices/AsyncValueTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/Future.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/Task.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/430200c27b11480ab26de5f7d5cf1abab0918/40/378093b3/RazorComponentEndpointInvoker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/430200c27b11480ab26de5f7d5cf1abab0918/8e/b2ea3e50/EndpointHtmlRenderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/AddUsage.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/AddUsage.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/Daily.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/Daily.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WaterTracker/wwwroot/bootstrap/bootstrap.min.css.map" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -71,9 +84,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.WaterTracker: IIS Express.executor": "Run",
-    ".NET Launch Settings Profile.WaterTracker: https.executor": "Run",
+    ".NET Launch Settings Profile.WaterTracker: https.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "WaterTrackingAPI",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -174,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729655232340</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Workspace.xml added">
+      <option name="closed" value="true" />
+      <created>1729957816186</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729957816186</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +231,53 @@
     <MESSAGE value="added model classes" />
     <MESSAGE value="ef migrations add initialcreate done" />
     <MESSAGE value="Blazor hello world test from api" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Workspace.xml added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Workspace.xml added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WaterTracker/Controller/WaterTrackingController.cs</url>
+          <line>61</line>
+          <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Controller\WaterTrackingController.cs" containingFunctionPresentation="Method 'GetAmounts'">
+            <startOffsets>
+              <option value="1802" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1803" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WaterTracker/Components/Pages/AddUsage.razor</url>
+          <line>68</line>
+          <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Components\Pages\AddUsage.razor" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+            <startOffsets>
+              <option value="-1" />
+            </startOffsets>
+            <endOffsets>
+              <option value="-1" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs</url>
+          <line>97</line>
+          <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Services\WaterTrackingService.cs" containingFunctionPresentation="Method 'GetAmountListAsync'">
+            <startOffsets>
+              <option value="3211" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3212" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
