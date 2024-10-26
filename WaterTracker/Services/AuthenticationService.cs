@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Net.Http.Json;
+using Microsoft.AspNetCore.Components;
 using WaterTracker.Model.DTO;
 
 namespace WaterTracker.Services;
@@ -19,6 +20,44 @@ public class AuthenticationService
         _httpClient = httpClient;
         _navigationManager = navigationManager;
         _httpClient.BaseAddress = new Uri(_navigationManager.BaseUri);
+    }
+
+    public async Task<bool> SignUpAsync(string username, string password, string confirmPassword)
+    {
+        try
+        {
+            var signupRequest = new SignupRequest 
+            { 
+                Username = username, 
+                Password = password,
+                ConfirmPassword = confirmPassword
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("api/User/signup", signupRequest);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                if (result?.Token != null)
+                {
+                    _cachedToken = result.Token;
+                    await _jsRuntime.InvokeVoidAsync("localStorage.setItem", TokenKey, result.Token);
+                    _httpClient.DefaultRequestHeaders.Authorization = 
+                        new AuthenticationHeaderValue("Bearer", result.Token);
+                    return true;
+                }
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Signup error content: {errorContent}");
+            
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Signup error: {ex.Message}");
+            return false;
+        }
     }
 
     public async Task<bool> LoginAsync(string username, string password)
@@ -45,6 +84,10 @@ public class AuthenticationService
                     return true;
                 }
             }
+            
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Login error content: {errorContent}");
+            
             return false;
         }
         catch (Exception ex)
@@ -76,5 +119,34 @@ public class AuthenticationService
         return !string.IsNullOrEmpty(token);
     }
     
-    
+    public async Task<string> GetHelloMessageAsync()
+    {
+        try
+        {
+            var token = await GetTokenAsync();
+            if (string.IsNullOrEmpty(token))
+            {
+                return null;
+            }
+            
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/User/hello");
+        
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+        
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Hello endpoint error: {response.StatusCode}, {errorContent}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Hello endpoint error: {ex.Message}");
+            return null;
+        }
+    }
 }

@@ -13,41 +13,100 @@
             <div id="background"></div>
         </div>
         <div class="col-sm w-50 d-flex align-items-center justify-content-center">
-            <form method="post" @onsubmit="Submit" class="LoginForm">
-                <h1 class="text-nowrap bd-highlight">Login</h1>
-                @if (!string.IsNullOrEmpty(errorMessage))
-                {
-                    <div class="alert alert-danger">
-                        @errorMessage
+            @if (isSignUp)
+            {
+                <form @onsubmit="SignUp" @onsubmit:preventDefault="true" class="LoginForm">
+                    <h1 class="text-nowrap bd-highlight">Sign Up</h1>
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger">
+                            @errorMessage
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label for="signup-username">Username</label>
+                        <input type="text" class="form-control" id="signup-username" 
+                               placeholder="Enter username" @bind="signUpUsername" @bind:event="oninput">
                     </div>
-                }
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" 
-                           placeholder="Enter username" @bind="userName">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" 
-                           placeholder="Password" @bind="userPwd">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" class="form-control" id="signup-password" 
+                               placeholder="Password" @bind="signUpPassword" @bind:event="oninput">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm-password" 
+                               placeholder="Confirm Password" @bind="confirmPassword" @bind:event="oninput">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-2">Sign Up</button>
+                    <button type="button" class="btn btn-link w-100" @onclick="ToggleMode">
+                        Already have an account? Login
+                    </button>
+                </form>
+            }
+            else
+            {
+                <form @onsubmit="LoginUser" @onsubmit:preventDefault="true" class="LoginForm">
+                    <h1 class="text-nowrap bd-highlight">Login</h1>
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger">
+                            @errorMessage
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" 
+                               placeholder="Enter username" @bind="loginUsername" @bind:event="oninput">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" 
+                               placeholder="Password" @bind="loginPassword" @bind:event="oninput">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+                    <button type="button" class="btn btn-link w-100" @onclick="ToggleMode">
+                        Need an account? Sign Up
+                    </button>
+                </form>
+            }
         </div>
     </div>
 </div>
 
 @code {
-    private string userName;
-    private string userPwd;
-    private string errorMessage;
+    private string loginUsername = "";
+    private string loginPassword = "";
+    private string signUpUsername = "";
+    private string signUpPassword = "";
+    private string confirmPassword = "";
+    private string errorMessage = "";
+    private bool isSignUp = false;
 
-    private async Task Submit()
+    private void ToggleMode()
+    {
+        isSignUp = !isSignUp;
+        errorMessage = "";
+        loginUsername = "";
+        loginPassword = "";
+        signUpUsername = "";
+        signUpPassword = "";
+        confirmPassword = "";
+    }
+
+    private async Task LoginUser()
     {
         try
         {
-            Console.WriteLine("submitting");
-            var result = await AuthService.LoginAsync(userName, userPwd);
+            errorMessage = "";
+            
+            if (string.IsNullOrWhiteSpace(loginUsername) || string.IsNullOrWhiteSpace(loginPassword))
+            {
+                errorMessage = "Username and password are required";
+                return;
+            }
+
+            var result = await AuthService.LoginAsync(loginUsername, loginPassword);
             if (result)
             {
                 NavigationManager.NavigateTo("/auth-test");
@@ -59,7 +118,65 @@
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"Login error: {ex.Message}");
             errorMessage = "An error occurred during login";
         }
     }
+
+    private async Task SignUp()
+    {
+        try
+        {
+            errorMessage = "";
+
+            if (string.IsNullOrWhiteSpace(signUpUsername) || 
+                string.IsNullOrWhiteSpace(signUpPassword) || 
+                string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                errorMessage = "All fields are required";
+                return;
+            }
+
+            if (signUpPassword != confirmPassword)
+            {
+                errorMessage = "Passwords do not match";
+                return;
+            }
+
+            var result = await AuthService.SignUpAsync(signUpUsername, signUpPassword, confirmPassword);
+            if (result)
+            {
+                NavigationManager.NavigateTo("/auth-test");
+            }
+            else
+            {
+                errorMessage = "Username might already exist or an error occurred";
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Signup error: {ex.Message}");
+            errorMessage = "An error occurred during sign up";
+        }
+    }
 }
+
+<style>
+    .LoginForm {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .btn-link {
+        text-decoration: none;
+    }
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+</style>

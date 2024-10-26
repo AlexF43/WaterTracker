@@ -6,14 +6,13 @@ namespace WaterTracker.Model;
 [PrimaryKey(nameof(usageId))]
 public class WaterUsage
 {
-    [ForeignKey(nameof(userId))]
-    private string usageId{ get; set; }
-    private string userId{ get; set; }
-    private string usageName{ get; set; }
-    private DateTime date{ get; set; }
+    [ForeignKey(nameof(userId))] public string usageId{ get; set; }
+    public string userId{ get; set; }
+    public string usageName{ get; set; }
+    public DateTime date{ get; set; }
     
     [ForeignKey(nameof(usageType))]
-    private string usageType{ get; set; }
-    private int usedSec{ get; set; }
-    private double totalUsage{ get; set; }
+    public string usageType{ get; set; }
+    public int usedSec{ get; set; }
+    public double totalUsage{ get; set; }
 }
