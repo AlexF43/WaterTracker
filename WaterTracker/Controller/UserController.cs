@@ -21,6 +21,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("signup")]
+    [IgnoreAntiforgeryToken]
     public async Task<IActionResult> Signup([FromBody] SignupRequest request)
     {
         try
@@ -54,6 +55,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
+    [IgnoreAntiforgeryToken]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         try
@@ -71,6 +73,7 @@ public class UserController : ControllerBase
             return StatusCode(500, "An unknown error occurred");
         }
     }
+
     [Authorize]
     [HttpGet("hello")]
     public IActionResult Hello()

@@ -1,0 +1,59 @@
+@page "/auth-test"
+@using WaterTracker.Services
+@inject AuthenticationService AuthService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<PageTitle>Authentication Test</PageTitle>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h2>Authentication Status</h2>
+            @if (isLoading)
+            {
+                <p>Loading...</p>
+            }
+            else if (isAuthenticated)
+            {
+                <div class="alert alert-success">
+                    You are authenticated!
+                </div>
+                <button class="btn btn-danger" @onclick="Logout">Logout</button>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    You are not authenticated.
+                </div>
+                <button class="btn btn-primary" @onclick="GoToLogin">Go to Login</button>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool isAuthenticated;
+    private bool isLoading = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isAuthenticated = await AuthService.IsAuthenticatedAsync();
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task Logout()
+    {
+        await AuthService.LogoutAsync();
+        NavigationManager.NavigateTo("/login");
+    }
+
+    private void GoToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}
