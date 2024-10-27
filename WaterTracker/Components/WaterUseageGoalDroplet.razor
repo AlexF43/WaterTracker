@@ -1,0 +1,107 @@
+@using WaterTracker.Model
+@using WaterTracker.Services
+@inject WaterTrackingService Tracker
+
+<div class="position-relative" style="width: @(Size)px; height: @(Size)px">
+    <svg viewBox="0 0 100 100" width="@Size" height="@Size" class="position-absolute">
+        @* Droplet outline *@
+        <path 
+            d="M50,0 C50,0 90,50 90,75 C90,88.8 71.8,100 50,100 C28.2,100 10,88.8 10,75 C10,50 50,0 50,0Z"
+            fill="none"
+            stroke="#0EA5E9"
+            stroke-width="2" />
+            
+        <clipPath id="dropletClip">
+            <path d="M50,0 C50,0 90,50 90,75 C90,88.8 71.8,100 50,100 C28.2,100 10,88.8 10,75 C10,50 50,0 50,0Z" />
+        </clipPath>
+        
+        <g clip-path="url(#dropletClip)">
+            <path 
+                d="@GetWavePath()"
+                fill="#0EA5E9" />
+        </g>
+    </svg>
+    
+    <div class="position-absolute d-flex flex-column align-items-center justify-content-center text-center" 
+         style="inset: 0">
+        <span class="h4 mb-0 text-primary">@Percentage%</span>
+        <small class="text-muted">@Label</small>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Size { get; set; } = 120;
+    
+    [Parameter]
+    public bool IsWeekly { get; set; } = false;
+    
+    private double usage = 0;
+    private double goal = 0;
+    private double percentage = 0;
+    private string Label => IsWeekly ? "weekly goal" : "daily goal";
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadGoal();
+        await LoadUsage();
+        CalculatePercentage();
+    }
+    
+    private async Task LoadGoal()
+    {
+        var goalData = await Tracker.GetGoalAsync();
+        if (goalData != null)
+        {
+            goal = IsWeekly ? goalData.WeeklyGoal : goalData.DailyGoal;
+        }
+    }
+    
+    private async Task LoadUsage()
+    {
+        if (IsWeekly)
+        {
+            var today = DateTime.Now;
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            var endOfWeek = startOfWeek.AddDays(6);
+            
+            var weeklyUsage = await Tracker.GetWeeklyWaterUsage(startOfWeek, endOfWeek);
+            if (weeklyUsage != null)
+            {
+                usage = weeklyUsage.Values.Sum();
+            }
+        }
+        else
+        {
+            var today = DateTime.Now;
+            var usages = await Tracker.GetWaterUsage(today, today);
+            if (usages != null && usages.Any())
+            {
+                usage = usages.Sum(u => u.totalUsage);
+            }
+        }
+    }
+    
+    private void CalculatePercentage()
+    {
+        if (goal > 0)
+        {
+            percentage = Math.Min(100, Math.Round((usage / goal) * 100));
+        }
+    }
+    
+    public async Task RefreshData()
+    {
+        await LoadUsage();
+        CalculatePercentage();
+        StateHasChanged();
+    }
+    
+    private double Percentage => percentage;
+    
+    private string GetWavePath()
+    {
+        var waveHeight = 100 - Percentage;
+        return $"M0,{waveHeight} L100,{waveHeight} L100,100 L0,100Z";
+    }
+}

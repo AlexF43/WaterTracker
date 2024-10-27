@@ -101,6 +101,7 @@ public class AuthenticationService
         _cachedToken = null;
         await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", TokenKey);
         _httpClient.DefaultRequestHeaders.Authorization = null;
+        _httpClient.DefaultRequestHeaders.Clear();
     }
 
     public async Task<string> GetTokenAsync()

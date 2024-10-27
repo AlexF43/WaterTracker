@@ -1,5 +1,6 @@
 ﻿@page "/daily"
 @using WaterTracker.Model
+@using WaterTracker.Components
 @using System.Linq
 @using WaterTracker.Services
 @using ApexCharts
@@ -87,7 +88,7 @@
         </div>
         <div class="column-sm w-50">
             <div id="infoGraphic">
-                
+                <WaterUseageGoalDroplet Size="120" IsWeekly="false" />
             </div>
         </div>
 

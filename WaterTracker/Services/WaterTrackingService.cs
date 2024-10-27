@@ -253,5 +253,43 @@ public class WaterTrackingService
         }
     }
     
+    public async Task<double> GetLifetimeWaterUsageAsync()
+    {
+        try
+        {
+            var token = await GetTokenAsync();
+            if (string.IsNullOrEmpty(token))
+            {
+                return 0;
+            }
+
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/WaterTracking/lifetime");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<double>();
+                return result;
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"GetLifetime endpoint error: {response.StatusCode}, {errorContent}");
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"GetLifetime endpoint error: {ex.Message}");
+            return 0;
+        }
+    }
+    
+    public void ClearToken()
+    {
+        _cachedToken = null;
+        _httpClient.DefaultRequestHeaders.Clear();
+    }
+    
 }
 

@@ -1,5 +1,8 @@
-﻿@inject HttpClient Http
+﻿@using WaterTracker.Services
+@inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject AuthenticationService AuthService
+@inject WaterTracker.Services.WaterTrackingService Tracker
 @rendermode InteractiveServer
 
 <div class="navbar">
@@ -30,8 +33,8 @@
                     <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Record Water Usage
                 </NavLink>
             </div>
-            <div class="nav-item px-3 loginNavItem">
-                <NavLink class="nav-link" href="/logout">
+            <div class="nav-item px-3 loginNavItem" @onclick="Logout">
+                <NavLink class="nav-link">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Logout
                 </NavLink>
             </div>
@@ -39,3 +42,13 @@
     </div>
 </div>
 
+@code {
+
+    private async Task Logout()
+    {
+        await AuthService.LogoutAsync();
+        Tracker.ClearToken();
+        NavigationManager.NavigateTo("/login");
+    }
+
+}

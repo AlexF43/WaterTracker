@@ -7,7 +7,9 @@ namespace WaterTracker.Model;
 public class WaterUsage
 {
     [ForeignKey(nameof(userId))] public string usageId{ get; set; }
-    public string userId{ get; set; }
+    
+
+    public string userId { get; set; }
     public string usageName{ get; set; }
     public DateTime date{ get; set; }
     

@@ -217,4 +217,22 @@ public class WaterTrackingController : ControllerBase
             return StatusCode(500, "An error occurred while fetching water usage");
         }
     }
+    
+    [HttpGet("lifetime")]
+    public async Task<IActionResult> GetLifetimeWaterUsage()
+    {
+        try
+        {
+            var userId = GetUserId();
+            var query = await _context.WaterUsages
+                .Where(w => w.userId == userId)
+                .SumAsync(w => w.totalUsage);
+
+            return Ok(query);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An error occurred while fetching lifetime water usage");
+        }
+    }
 }

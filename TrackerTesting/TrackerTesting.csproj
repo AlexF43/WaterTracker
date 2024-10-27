@@ -21,4 +21,8 @@
         <Using Include="NUnit.Framework"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WaterTracker\WaterTracker.csproj" />
+    </ItemGroup>
+
 </Project>
