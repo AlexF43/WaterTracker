@@ -1,8 +1,10 @@
-﻿@page "/"
-@using System.Net.Http.Json
-@using System.Net.Mime
+﻿@page "/home"
+@using System.Runtime.InteropServices.JavaScript
+@using WaterTracker.Model
+@using WaterTracker.Services
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject WaterTrackingService Tracker;
 @rendermode InteractiveServer
 
 <PageTitle>WaterTracker</PageTitle>
@@ -15,12 +17,19 @@
         <div class="row h-50 align-middle" >
             <div class="infoGraphic">
                 <div class="info">
-                    <p>@liter L</p>
+                    @if (_usages != null && _usages.Any())
+                    {
+                        <p>@liter L</p>
+                    }
+                    else
+                    {
+                        <p>Loading...</p>
+                    }
                 </div>
             </div>
         </div>
         <div class="row h-25 align-middle">
-            <a class="btn btn-primary" href="/login">Click me</a>
+            <a class="btn btn-primary" href="/addUsage">Get Started</a>
         </div>
     </div>
 </div>
@@ -37,8 +46,9 @@
     private string _message = string.Empty;
     private string _alertClass = string.Empty;
     private bool _isLoading = false;
+    private List<WaterUsage> _usages;
 
-    private float liter;
+    private double liter;
 
     protected override void OnInitialized()
     {
@@ -46,6 +56,33 @@
         Http.BaseAddress = new Uri(NavigationManager.BaseUri);
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            GetAllUsageSum(DateTime.Now);
+        }
+        StateHasChanged();
+    }
+
+
+    private async Task GetAllUsageSum(DateTime today)
+    {
+        double result = 0;
+        var list = await Tracker.GetWaterUsage(today, today);
+        _usages = list;
+        SetLiterValue();
+    }
+
+    private void SetLiterValue()
+    {
+        double result = 0;
+        foreach (var usage in _usages)
+        {
+            result += usage.totalUsage;
+        }
+        liter = result;
+    }
     private async Task TestHelloEndpoint()
     {
         try

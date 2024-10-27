@@ -126,7 +126,38 @@ public class WaterTrackingService
             return null;
         }
     }
-    
+
+    public async Task<List<WaterUsage>> GetWaterUsage(DateTime startDate, DateTime endDate)
+    {
+        try
+        {
+            var token = await GetTokenAsync();
+            if (string.IsNullOrEmpty(token))
+            {
+                return null;
+            }
+
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/WaterTracking/usage");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<List<WaterUsage>>();
+                return result;
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"GetAmount endpoint error: {response.StatusCode}, {errorContent}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"GetAmount endpoint error: {ex.Message}");
+            return null;
+        }
+    }
     public async Task<bool> AddUsageAsync(string name, string type, int usedTime)
     {
         CreateWaterUseageRequest request = new CreateWaterUseageRequest

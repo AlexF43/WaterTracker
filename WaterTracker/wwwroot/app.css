@@ -64,4 +64,7 @@ h1:focus {
     width: 100%;
     height: 100%;
 }
+#background > img{
+    margin-top: 50%;
+}
 /* Daily CSS */
