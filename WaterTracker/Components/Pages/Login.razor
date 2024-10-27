@@ -149,7 +149,7 @@
             var result = await AuthService.SignUpAsync(signUpUsername, signUpPassword, confirmPassword);
             if (result)
             {
-                NavigationManager.NavigateTo("/auth-test");
+                NavigationManager.NavigateTo("/welcome");
             }
             else
             {

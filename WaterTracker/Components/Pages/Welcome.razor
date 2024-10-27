@@ -1,4 +1,4 @@
-@page "/auth-test"
+@page "/welcome"
 @using WaterTracker.Services
 @inject AuthenticationService AuthService
 @inject NavigationManager NavigationManager
@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
-            <h2>Authentication Status</h2>
+            <h2>Registration</h2>
             @if (isLoading)
             {
                 <p>Loading...</p>
@@ -17,7 +17,7 @@
             else if (isAuthenticated)
             {
                 <div class="alert alert-success">
-                    You are authenticated!
+                    You are Registered! Welcome!
                 </div>
                 @if (!string.IsNullOrEmpty(helloMessage))
                 {
@@ -25,10 +25,6 @@
                         @helloMessage
                     </div>
                 }
-                <div class="mt-3">
-                    <button class="btn btn-primary me-2" @onclick="CallHelloEndpoint">Call Hello Endpoint</button>
-                    <button class="btn btn-danger" @onclick="Logout">Logout</button>
-                </div>
             }
             else
             {

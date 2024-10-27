@@ -11,8 +11,8 @@
 
 <div class="container">
     <div class="row h-25">
-        <h1>Your Weekly Record</h1>
-        <p>This component demonstrates showing data.</p>
+        <h1>Weekly Record</h1>
+        <p>Your Weekly Usage of Water</p>
     </div>
     <div class="row h-50">
         @if (_weeklyUsages.Count == 0)
@@ -71,7 +71,7 @@
     private async Task GetWaterUsages(DateTime today)
     {
         Console.Write("Request water usages");
-        _weeklyUsages = await Tracker.GetWeeklyWaterUsage(today.Date - TimeSpan.FromDays(7), today);
+        _weeklyUsages = await Tracker.GetWeeklyWaterUsage(today.Date - TimeSpan.FromDays(6), today);
         foreach (var usage in _weeklyUsages)
         {
             _chartData.Add(new KeyValue{time = usage.Key, value = usage.Value});
