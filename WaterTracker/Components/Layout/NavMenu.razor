@@ -9,33 +9,36 @@
     <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
         <div class="top-row ps-3 navbar navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/home">WaterTracker</a>
+                <a class="navbar-brand" href="/home">
+                    <span class="bi bi-droplet-fill-nav-menu" aria-hidden="true"></span>
+                    WaterTracker
+                </a>
             </div>
         </div>
         <nav class="flex-row">
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="/daily" Match="NavLinkMatch.All">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Daily Record
+                    <span class="bi bi-calendar-day-nav-menu" aria-hidden="true"></span> Daily Record
                 </NavLink>
             </div>
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="/weekly">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weekly Record
+                    <span class="bi bi-calendar-week-nav-menu" aria-hidden="true"></span> Weekly Record
                 </NavLink>
             </div>
             <div class="nav-item px-3">
                 <NavLink href="/set-goals" class="nav-link" Match="NavLinkMatch.All">
-                    <span class="oi oi-target" aria-hidden="true"></span> Set Goals
+                    <span class="bi bi-bullseye-nav-menu" aria-hidden="true"></span> Set Goals
                 </NavLink>
             </div>
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="/addUsage">
-                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Record Water Usage
+                    <span class="bi bi-plus-circle-nav-menu" aria-hidden="true"></span> Record Water Usage
                 </NavLink>
             </div>
             <div class="nav-item px-3 loginNavItem" @onclick="Logout">
                 <NavLink class="nav-link">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Logout
+                    <span class="bi bi-box-arrow-right-nav-menu" aria-hidden="true"></span> Logout
                 </NavLink>
             </div>
         </nav>

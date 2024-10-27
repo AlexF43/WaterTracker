@@ -11,8 +11,6 @@
 
 <PageTitle>Record Water Usage</PageTitle>
 
-
-
 <div class="container">
     <div class="row h-25">
         <h1>Record Water Usage</h1>
@@ -22,15 +20,25 @@
         <form method="post" @onsubmit="Onsubmit">
             <div class="form-group">
                 <label for="Time">Time</label>
-                <input class="form-control" id="Time" aria-describedby="emailHelp" placeholder="hh:mm" @bind="now">
+                <input type="datetime-local" 
+                       class="form-control" 
+                       id="Time" 
+                       value="@date.ToString("yyyy-MM-ddTHH:mm")"
+                       @onchange="@((ChangeEventArgs e) => OnDateChange(e))">
             </div>
             <div class="form-group">
-                <label for="waterUsageName">Usage</label>
-                <input class="form-control" id="waterUsageName" placeholder="Title(Reason) of water usage" @bind="usageName">
+                <label for="waterUsageName">Comment</label>
+                <input class="form-control" 
+                       id="waterUsageName" 
+                       placeholder="Title(Reason) of water usage" 
+                       @bind="usageName">
             </div>
             <div class="form-group">
-                <label for="waterUsageName">Usage Category</label>
-                <select class="form-select" aria-label="Usage Example" name="Selection" @onchange="LoadValue">
+                <label for="waterUsageName">Category</label>
+                <select class="form-select" 
+                        aria-label="Usage Example" 
+                        name="Selection" 
+                        @onchange="LoadValue">
                     @if (_amounts != null && _amounts.Any())
                     {
                         @for (int i = 0; i < _amounts.Count; i++)
@@ -44,10 +52,16 @@
                     }
                 </select>
             </div>
-            <div class="form-group">
-                <label for="usedTime">Used Time</label>
-                <input class="form-control" id="usedTime" placeholder="Used Seconds" disabled="@fixedTime" @bind="fixedValue">
-            </div>
+            @if(!fixedTime) {
+                <div class="form-group">
+                    <label for="usedTime">Used Time (Seconds)</label>
+                    <input class="form-control" 
+                           id="usedTime" 
+                           placeholder="Used Seconds" 
+                           disabled="@fixedTime" 
+                           @bind="fixedValue">
+                </div>
+            }
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -56,20 +70,19 @@
 </div>
 
 @code {
-
     enum GraphStatus
     {
         Proportion,
         AllUsage
     }
 
-    private string now;
-    private DateTime date;
+    private DateTime date = DateTime.Now;
     private bool fixedTime;
     private int fixedValue;
     private int selectedValue;
     private string usageName;
     List<WaterAmount> _amounts = new List<WaterAmount>();
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -78,9 +91,16 @@
             if (result != null)
             {
                 _amounts = result;
-                now = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
             }
             StateHasChanged();
+        }
+    }
+
+    private void OnDateChange(ChangeEventArgs e)
+    {
+        if (DateTime.TryParse(e.Value?.ToString(), out DateTime newDate))
+        {
+            date = newDate;
         }
     }
 
@@ -115,7 +135,6 @@
 
     private async void Onsubmit()
     {
-        date = DateTime.Parse(now);
         if (await TrackService.AddUsageAsync(date, usageName, _amounts[selectedValue].usageType, fixedValue))
         {
             await Javascript.InvokeVoidAsync("alert", "Successfully Added");
@@ -125,8 +144,5 @@
         {
             await Javascript.InvokeVoidAsync("alert", "Error");
         }
-        
     }
-    
-    
 }
