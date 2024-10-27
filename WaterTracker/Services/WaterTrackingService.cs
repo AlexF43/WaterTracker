@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
+using WaterTracker.Interfaces;
 using WaterTracker.Model;
 using WaterTracker.Model.DTO;
 using WaterTracker.Model.DTO.WaterTrackingDTO;
@@ -8,7 +9,7 @@ using WaterTracker.Model.DTO.WaterTrackingDTO;
 
 namespace WaterTracker.Services;
 
-public class WaterTrackingService
+public class WaterTrackingService : IWaterTrackingService
 {
     private readonly IJSRuntime _jsRuntime;
     private readonly HttpClient _httpClient;

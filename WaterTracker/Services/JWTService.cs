@@ -2,11 +2,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using WaterTracker.Interfaces;
 using WaterTracker.Model;
 
 namespace WaterTracker.Services;
 
-public class JWTService
+public class JWTService : IJWTService
 {
     private readonly IConfiguration _configuration;
 

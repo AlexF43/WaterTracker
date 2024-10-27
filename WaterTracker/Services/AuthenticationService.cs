@@ -1,11 +1,12 @@
 using System.Net.Http.Headers;
 using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
+using WaterTracker.Interfaces;
 using WaterTracker.Model.DTO;
 
 namespace WaterTracker.Services;
 
-public class AuthenticationService
+public class AuthenticationService : IAuthenticationService
 {
     private readonly IJSRuntime _jsRuntime;
     private readonly HttpClient _httpClient;

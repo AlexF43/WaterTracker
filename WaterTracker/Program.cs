@@ -10,6 +10,7 @@ using WaterTracker.Model;
 using WaterTracker.Services;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
+using WaterTracker.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,9 +20,14 @@ builder.Services.AddRazorComponents()
 builder.Services.AddDbContext<WaterTrackerDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IJWTService, JWTService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IWaterTrackingService, WaterTrackingService>();
+
 builder.Services.AddScoped<JWTService>();
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<WaterTrackingService>();
+
 builder.Services.AddHttpClient();
 
 builder.Services.AddAntiforgery(options =>
