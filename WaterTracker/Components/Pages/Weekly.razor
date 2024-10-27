@@ -1,7 +1,11 @@
 ﻿@page "/weekly"
 @using WaterTracker.Model
+@using WaterTracker.Services
+@using ApexCharts
+@inject WaterTrackingService Tracker
 @inject HttpClient Http
 @attribute [StreamRendering]
+@rendermode InteractiveServer
 
 <PageTitle>Weekly View</PageTitle>
 
@@ -11,7 +15,7 @@
         <p>This component demonstrates showing data.</p>
     </div>
     <div class="row h-50">
-        @if (_waterUsages.Count == 0)
+        @if (_weeklyUsages.Count == 0)
         {
             <p>
                 <em>Loading...</em>
@@ -19,25 +23,17 @@
         }
         else
         {
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Usage</th>
-                    <th>Length</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (WaterUsage usage in _waterUsages)
-                {
-                    <tr>
-                        <th>@usage</th>
-                        <td>temp</td>
-                        <td>temp</td>
-                    </tr>
-                }
-                </tbody>
-            </table>
+            <div class="PieChart">
+                <ApexChart TItem="KeyValue" Title="WeeklyUsage" Width="800" Height="600">
+                    <ApexPointSeries TItem="KeyValue"
+                                     Items="_chartData"
+                                     Name="Test"
+                                     SeriesType="SeriesType.Bar"
+                                     XValue="e => e.time"
+                                     YValue="e=> (decimal)e.value"
+                                     ShowDataLabels="true"/>
+                </ApexChart>
+            </div>
         }
     </div>
     <div class="row h-25">
@@ -54,20 +50,31 @@
 </div>
 
 @code {
-    private List<WaterUsage> _waterUsages = new List<WaterUsage>();
-    protected override async Task OnInitializedAsync()
+
+    class KeyValue
     {
-        
+        public string time;
+        public double value;
+    }
+    private Dictionary<string, double> _weeklyUsages = new Dictionary<string, double>();
+    List<KeyValue> _chartData = new List<KeyValue>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await GetWaterUsages(DateTime.Now);
+        }
+        StateHasChanged();
     }
 
-    private async Task GetWaterUsage()
+    private async Task GetWaterUsages(DateTime today)
     {
         Console.Write("Request water usages");
-        var response = await Http.GetAsync("api/User/getWaterUsage");
-        if (response.IsSuccessStatusCode)
+        _weeklyUsages = await Tracker.GetWeeklyWaterUsage(today.Date - TimeSpan.FromDays(7), today);
+        foreach (var usage in _weeklyUsages)
         {
-            
+            _chartData.Add(new KeyValue{time = usage.Key, value = usage.Value});
         }
     }
-
 }

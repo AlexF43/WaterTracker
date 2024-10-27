@@ -189,10 +189,41 @@ public class WaterTrackingService
             return null;
         }
     }
-    public async Task<bool> AddUsageAsync(string name, string type, int usedTime)
+    public async Task<Dictionary<string, double>> GetWeeklyWaterUsage(DateTime startDate, DateTime endDate)
+    {
+        try
+        {
+            var token = await GetTokenAsync();
+            if (string.IsNullOrEmpty(token))
+            {
+                return null;
+            }
+
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync($"api/WaterTracking/usageWeekly?startDate={startDate:yyyy-MM-dd}&endDate={endDate:yyyy-MM-dd}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<Dictionary<string, double>>();
+                return result;
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"GetAmount endpoint error: {response.StatusCode}, {errorContent}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"GetAmount endpoint error: {ex.Message}");
+            return null;
+        }
+    }
+    public async Task<bool> AddUsageAsync(DateTime date, string name, string type, int usedTime)
     {
         CreateWaterUseageRequest request = new CreateWaterUseageRequest
-            { UsageName = name, UsageType = type, UsedSeconds = usedTime };
+            { Time = date, UsageName = name, UsageType = type, UsedSeconds = usedTime };
         try
         {
             var token = await GetTokenAsync();
@@ -204,7 +235,7 @@ public class WaterTrackingService
             _httpClient.DefaultRequestHeaders.Authorization = 
                 new AuthenticationHeaderValue("Bearer", token);
 
-            var response = await _httpClient.PostAsJsonAsync("api/WaterTracking", request);
+            var response = await _httpClient.PostAsJsonAsync($"api/WaterTracking", request);
         
             if (response.IsSuccessStatusCode)
             {

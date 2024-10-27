@@ -39,7 +39,7 @@ public class WaterTrackingController : ControllerBase
                 usageId = Guid.NewGuid().ToString(),
                 userId = userId,
                 usageName = request.UsageName,
-                date = DateTime.UtcNow,
+                date = request.Time,
                 usageType = request.UsageType,
                 usedSec = request.UsedSeconds,
                 totalUsage = request.UsedSeconds * waterAmount.usageLiterPerSec
@@ -182,6 +182,34 @@ public class WaterTrackingController : ControllerBase
                 })
                 .ToListAsync();
 
+            return Ok(usages);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An error occurred while fetching water usage");
+        }
+    }
+    
+    [HttpGet("usageWeekly")]
+    public async Task<IActionResult> GetWeeklyWaterUsage([FromQuery] DateTime? startDate, [FromQuery] DateTime? endDate)
+    {
+        try
+        {
+            var userId = GetUserId();
+            var query = _context.WaterUsages
+                .Where(w => w.userId == userId);
+            
+            if (startDate.HasValue)
+                query = query.Where(w => w.date.Date >= startDate.Value.Date);
+            
+            if (endDate.HasValue)
+                query = query.Where(w => w.date.Date <= endDate.Value.Date);
+
+            var usages = query
+                .OrderByDescending(w => w.date)
+                .GroupBy(w => w.date.Date)
+                .ToDictionary(eachDate => eachDate.Key.ToString("yyyy-MM-dd"), eachDate => eachDate.Sum(w => w.totalUsage));
+            
             return Ok(usages);
         }
         catch (Exception ex)
