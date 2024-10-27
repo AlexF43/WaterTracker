@@ -1,7 +1,9 @@
 ﻿@page "/daily"
 @using WaterTracker.Model
 @using System.Linq
+@using WaterTracker.Services
 @inject HttpClient Http
+@inject WaterTrackingService Tracker
 @attribute [StreamRendering]
 @rendermode InteractiveServer
 
@@ -32,19 +34,34 @@
                     <tr>
                         <th>Date</th>
                         <th>Usage</th>
-                        <th>Length</th>
+                        <th>Amount(/L)</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    @foreach (WaterUsage usage in _waterUsages)
+                    @if (_waterUsages != null && _waterUsages.Any())
                     {
-                        <tr>
-                            <th>usage.Date</th>
-                            <td>usage.UsageType</td>
-                            <td>usage.TotalUsage</td>
-                        </tr>
+                        <tbody>
+                        @foreach (WaterUsage usage in _waterUsages)
+                        {
+                            <tr>
+                                <th>@usage.date</th>
+                                <td>@usage.usageName</td>
+                                <td>@usage.totalUsage</td>
+                            </tr>
+                        }
+                        </tbody>  
+                       
                     }
-                    </tbody>
+                    else
+                    {
+                        <tbody>
+                        @foreach (WaterUsage usage in _waterUsages)
+                        {
+                            <tr>
+                                <th>Loading</th>
+                            </tr>
+                        }
+                        </tbody>  
+                    }
                 </table>
             }
             else
@@ -89,15 +106,20 @@
         myStyle = "display:none";
         statusString = "Usage List";
     }
-    
-    private async Task GetWaterUsages()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await GetWaterUsages(DateTime.Now);
+        }
+        StateHasChanged();
+    }
+
+    private async Task GetWaterUsages(DateTime today)
     {
         Console.Write("Request water usages");
-        var response = await Http.GetAsync("api/User/getWaterUsage");
-        if (response.IsSuccessStatusCode)
-        {
-            
-        }
+        _waterUsages = await Tracker.GetWaterUsage(today, today);
     }
 
     private void SetStatus(int statusIdx)

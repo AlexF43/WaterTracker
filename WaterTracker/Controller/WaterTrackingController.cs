@@ -159,4 +159,34 @@ public class WaterTrackingController : ControllerBase
             return StatusCode(500, "An error occurred while fetching water usage");
         }
     }
+    [HttpGet("usageAll")]
+    public async Task<IActionResult> GetWaterUsageAll([FromQuery] DateTime? today)
+    {
+        try
+        {
+            var query = _context.WaterUsages.AsQueryable();
+            
+            if (today.HasValue)
+                query = query.Where(w => w.date.Date == today.Value.Date);
+            
+            var usages = await query
+                .OrderByDescending(w => w.date)
+                .Select(w => new UseageListResponse
+                {
+                    UsageId = w.usageId,
+                    UsageName = w.usageName,
+                    UsageType = w.usageType,
+                    Date = w.date,
+                    UsedSeconds = w.usedSec,
+                    TotalUsage = w.totalUsage
+                })
+                .ToListAsync();
+
+            return Ok(usages);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An error occurred while fetching water usage");
+        }
+    }
 }

@@ -23,7 +23,7 @@
                     }
                     else
                     {
-                        <p>Loading...</p>
+                        <p>0L</p>
                     }
                 </div>
             </div>
@@ -64,12 +64,10 @@
         }
         StateHasChanged();
     }
-
-
     private async Task GetAllUsageSum(DateTime today)
     {
         double result = 0;
-        var list = await Tracker.GetWaterUsage(today, today);
+        var list = await Tracker.GetWaterUsageAll(today);
         _usages = list;
         SetLiterValue();
     }
