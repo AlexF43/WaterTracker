@@ -1,15 +1,22 @@
-namespace TrackerTesting;
+using NUnit.Framework;
+using WaterTracker.Model;
 
-public class Tests
+namespace TrackerTesting
 {
-    [SetUp]
-    public void Setup()
+    [TestFixture]
+    public class WaterAmountTests
     {
-    }
-
-    [Test]
-    public void Test1()
-    {
-        Assert.Pass();
+        [Test]
+        public void WaterAmount_HoldsCorrectValues()
+        {            
+            var waterAmount = new WaterAmount
+            {
+                usageType = "Shower",
+                usageLiterPerSec = 2.5
+            };
+          
+            Assert.That(waterAmount.usageType, Is.EqualTo("Shower"));
+            Assert.That(waterAmount.usageLiterPerSec, Is.EqualTo(2.5));
+        }
     }
 }
