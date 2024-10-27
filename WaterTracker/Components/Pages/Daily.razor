@@ -2,6 +2,7 @@
 @using WaterTracker.Model
 @using System.Linq
 @using WaterTracker.Services
+@using ApexCharts
 @inject HttpClient Http
 @inject WaterTrackingService Tracker
 @attribute [StreamRendering]
@@ -67,7 +68,15 @@
             else
             {
                 <div class="PieChart">
-                    Pie
+                    <ApexChart TItem="WaterUsage" Title="DailyUsage" Width="800" Height="600">
+                        <ApexPointSeries TItem="WaterUsage"
+                                         Items="_waterUsages"
+                                         Name="Test"
+                                         SeriesType="SeriesType.Pie"
+                                         XValue="e => e.usageName"
+                                         YValue="e=> (decimal)e.totalUsage"
+                                         ShowDataLabels="true"/>
+                    </ApexChart>
                 </div>
             }
         
@@ -95,6 +104,7 @@
     
     private List<WaterUsage> _waterUsages = new List<WaterUsage>();
     private GraphStatus _status = GraphStatus.AllUsage;
+    double sum;
     bool dropdown, table, proportion;
     string myStyle, statusString;
     
@@ -120,6 +130,10 @@
     {
         Console.Write("Request water usages");
         _waterUsages = await Tracker.GetWaterUsage(today, today);
+        foreach (var usage in _waterUsages)
+        {
+            sum += usage.totalUsage;
+        }
     }
 
     private void SetStatus(int statusIdx)

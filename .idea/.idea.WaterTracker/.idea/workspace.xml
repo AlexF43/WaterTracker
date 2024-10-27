@@ -9,14 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="AddUsage Selection Validate Implemented">
+    <list default="true" id="4afc77f0-b118-4108-8e96-3bd040adeb26" name="Changes" comment="Daily - Table View Implemented">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WaterTracker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Layout/NavMenu.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Daily.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Components/Pages/Home.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Controller/WaterTrackingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Controller/WaterTrackingController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/Services/WaterTrackingService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/watertrackerdatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/WaterTracker/wwwroot/app.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +70,7 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/81cabf2857a01351e5ab578947c7403a5b128ad1/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/Task.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/430200c27b11480ab26de5f7d5cf1abab0918/40/378093b3/RazorComponentEndpointInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/430200c27b11480ab26de5f7d5cf1abab0918/8e/b2ea3e50/EndpointHtmlRenderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/jbync/OneDrive/바탕 화면/Studies/2024 Spring Information Technology/31927 .NET/WaterTracker/WaterTracker/Components/Pages/Daily.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WaterTracker/wwwroot/bootstrap/bootstrap.min.css.map" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -212,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729962500805</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Daily - Table View Implemented">
+      <option name="closed" value="true" />
+      <created>1729999253819</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729999253819</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +255,8 @@
     <MESSAGE value="Blazor hello world test from api" />
     <MESSAGE value="Workspace.xml added" />
     <MESSAGE value="AddUsage Selection Validate Implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="AddUsage Selection Validate Implemented" />
+    <MESSAGE value="Daily - Table View Implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Daily - Table View Implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -295,19 +301,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WaterTracker/Controller/WaterTrackingController.cs</url>
-          <line>130</line>
-          <properties documentPath="C:\Users\jbync\OneDrive\바탕 화면\Studies\2024 Spring Information Technology\31927 .NET\WaterTracker\WaterTracker\Controller\WaterTrackingController.cs" containingFunctionPresentation="Method 'GetWaterUsage'">
-            <startOffsets>
-              <option value="3612" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3613" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
